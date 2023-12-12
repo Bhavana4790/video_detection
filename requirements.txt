@@ -1,4 +1,11 @@
 streamlit
+opencv-python
+pandas
+numpy
+pillow
+pyarrow 
+torch                  
+torchvision 
 #python-csv
 huggingface_hub
 yt_dlp
