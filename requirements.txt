@@ -4,7 +4,6 @@ pandas
 numpy
 pillow
 pyarrow 
-opencv-python==4.8.1.78
 torch==1.13.1                  
 torchvision==0.14.1 
 #python-csv
@@ -12,6 +11,7 @@ huggingface_hub
 yt_dlp
 lapx>=0.5.2
 timm==0.8.13.dev0
-ultralytics==8.0.124
+ultralytics #==8.0.124
 #!apt-get install -y libgl1-mesa-dev
 #!apt-get install -y libglib2.0-0
+opencv-python==4.8.1.78
