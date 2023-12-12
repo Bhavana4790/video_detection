@@ -15,7 +15,8 @@ from moviepy.editor import VideoFileClip
 import io
 import tempfile
 import xml.etree.ElementTree as ET
-import csv 
+# import csv 
+import pandas as pd
 
 _logger = logging.getLogger("inference")
 
@@ -64,59 +65,6 @@ def num_frames(video_path):
         frame_count += 1
 
     return frame_count
-
-# def dict_to_xml(data):
-#     root = ET.Element('data')
-
-#     for key, values in data.items():
-#         item_elem = ET.SubElement(root, 'item', {'id': str(key)})
-
-#         for item in values:
-#             frame_elem = ET.SubElement(item_elem, 'frame', {'number': str(item['frame'])})
-
-#             age_elem = ET.SubElement(frame_elem, 'age')
-#             age_elem.text = str(item.get('age', ''))
-
-#             gender_elem = ET.SubElement(frame_elem, 'gender')
-#             gender_elem.text = str(item.get('gender', ''))
-
-#             gender_score_elem = ET.SubElement(frame_elem, 'gender_score')
-#             gender_score_elem.text = str(item.get('gender_score', ''))
-
-#             bbox_elem = ET.SubElement(frame_elem, 'bbox')
-#             bbox_elem.text = ', '.join(map(str, item.get('bbox', [])))
-
-#             bbox_confidence_elem = ET.SubElement(frame_elem, 'bbox_confidence')
-#             bbox_confidence_elem.text = str(item.get('bbox_confidence', ''))
-
-#     return ET.tostring(root, encoding='utf-8', method='xml')
-
-# def save_xml(data, file_path):
-#     xml_content = dict_to_xml(data)
-
-#     with open(file_path, 'wb') as xml_file:
-#         xml_file.write(xml_content)
-
-def save_dict_to_csv(data, file_path):
-    with open(file_path, 'w', newline='') as csv_file:
-        fieldnames = ['id', 'frame', 'age', 'gender', 'gender_score', 'bbox', 'bbox_confidence']
-        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
-
-        # Write the header
-        writer.writeheader()
-
-        # Write the data
-        for key, values in data.items():
-            for item in values:
-                writer.writerow({
-                    'id': key,
-                    'frame': item['frame'],
-                    'age': item.get('age', ''),
-                    'gender': item.get('gender', ''),
-                    'gender_score': item.get('gender_score', ''),
-                    'bbox': ', '.join(map(str, item.get('bbox', []))),
-                    'bbox_confidence': item.get('bbox_confidence', '')
-                })
 
 
 def do_demo(arguments):
@@ -174,16 +122,20 @@ def do_demo(arguments):
                                         for _v in vals]))
                               for vals in v]
         
-        # save_xml(history, os.path.join(dct.output, 'output.xml'))
-        save_dict_to_csv(history,os.path.join(dct.output, 'output.csv'))
+        df_list = []
+        for key, value in history.items():
+            for item in value:
+                item['id'] = key
+                df_list.append(item)
+
+        df = pd.DataFrame(df_list)
+
+        # Write DataFrame to CSV file
+        df.to_csv('output.csv', index=False)
         
         if len(history) == 0:
             return 0, 0
         else:
-
-            # json_file = os.path.join(dct.output, f"out_{bname}.json")
-            # with open(json_file, "w") as f:
-            #     json.dump(history, f)
             return len(history), history
 
 
@@ -191,8 +143,8 @@ def main_func(input_path, frames):
     dct = {
         'input': input_path.name,
         'output': 'results/',
-        'detector_weights': 'yolov8x_person_face.pt',
-        'checkpoint': "mivolo_imbd.pth.tar",
+        'detector_weights': 'face_model.pt',
+        'checkpoint': "gender_model.pth.tar",
         'with_persons': True,  # Set to True or False as needed
         'disable_faces': True,  # Set to True or False as needed
         'draw': True,  # Set to True or False as needed
