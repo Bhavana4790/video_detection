@@ -35,6 +35,7 @@ def main():
     # Display video
     if video_file is not None:
         st.header("Input Video Player")
+        video_bytes = video_file.read()
         
         # Save the video file temporarily
         temp_video_path = "temp_video.mp4"
