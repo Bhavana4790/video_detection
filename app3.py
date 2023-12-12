@@ -35,12 +35,18 @@ def main():
     # Display video
     if video_file is not None:
         st.header("Input Video Player")
-        st.video(video_file)
+        
+        # Save the video file temporarily
+        temp_video_path = "temp_video.mp4"
+        with open(temp_video_path, "wb") as temp_video_file:
+            temp_video_file.write(video_bytes)
+
+        st.video(temp_video_path)
 
         # Perform object detection when the user clicks the button
         if st.button("Perform Object Detection"):
             print("video file path",video_file)
-            count, result_video_path, result_csv_path = run_object_detection(video_file, frames)
+            count, result_video_path, result_csv_path = run_object_detection(temp_video_path, frames)
 
             # Display output video
             st.header("Output Video Player")
@@ -50,13 +56,9 @@ def main():
             # Provide download links for the result files
             st.markdown(f"Download [output video](data:video/avi;base64,{base64.b64encode(result_video_bytes).decode()})")
             st.markdown(f"Download [CSV results](data:file/csv;base64,{base64.b64encode(open(result_csv_path, 'rb').read()).decode()})")
-            # st.download_button(
-            #     "Press to Download",
-            #     csv,
-            #     "output.csv",
-            #     "text/csv",
-            #     key='download-csv'
-            #     )
 
+        if os.path.exists(temp_video_path):
+                os.remove(temp_video_path)
+            
 if __name__ == "__main__":
     main()
