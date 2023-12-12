@@ -11,7 +11,7 @@ import yt_dlp
 from data_reader import InputType, get_all_files, get_input_type
 from predictor import Predictor
 from timm.utils import setup_default_logging
-from moviepy.editor import VideoFileClip
+# from moviepy.editor import VideoFileClip
 import io
 import tempfile
 import xml.etree.ElementTree as ET
