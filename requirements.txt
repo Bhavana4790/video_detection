@@ -3,7 +3,7 @@
 streamlit
 #opencv-python-headless
 pandas
-numpy==1.21.6
+numpy
 pillow
 pyarrow 
 torch==1.13.1                  
