@@ -17,8 +17,8 @@ def run_object_detection(input_video_path, frames):
     result_csv_path = os.path.join(temp_dir, "output_results.csv")
     
     # Optionally, you can copy the result files to the output directory
-    shutil.copy("results/output.csv", result_csv_path)
-    shutil.copy("results/out_temp_video.avi", result_video_path)
+    shutil.copy("outputs/output.csv", result_csv_path)
+    shutil.copy("outputs/out_temp_video.avi", result_video_path)
     
     return count, result_video_path, result_csv_path
 
@@ -39,6 +39,7 @@ def main():
 
         # Perform object detection when the user clicks the button
         if st.button("Perform Object Detection"):
+            print("video file path",video_file)
             count, result_video_path, result_csv_path = run_object_detection(video_file, frames)
 
             # Display output video
