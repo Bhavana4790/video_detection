@@ -19,3 +19,4 @@ ultralytics==8.0.124
 #opencv-python==4.8.1.78
 opencv-python-headless
 common_pyutil
+omegaconf 
