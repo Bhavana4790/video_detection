@@ -1,5 +1,5 @@
 streamlit
-python-csv
+#python-csv
 huggingface_hub
 yt_dlp
 lapx>=0.5.2
