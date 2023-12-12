@@ -14,4 +14,4 @@ timm==0.8.13.dev0
 ultralytics #==8.0.124
 #!apt-get install -y libgl1-mesa-dev
 #!apt-get install -y libglib2.0-0
-opencv-python==4.8.1.78
+#opencv-python==4.8.1.78
