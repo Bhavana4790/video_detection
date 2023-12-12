@@ -142,7 +142,7 @@ def do_demo(arguments):
 def main_func(input_path, frames):
     dct = {
         'input': input_path.name,
-        'output': 'results/',
+        'output': 'outputs/',
         'detector_weights': 'face_model.pt',
         'checkpoint': "gender_model.pth.tar",
         'with_persons': True,  # Set to True or False as needed
