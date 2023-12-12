@@ -1,5 +1,6 @@
 streamlit
 opencv-python
+opencv-python-headless
 pandas
 numpy
 pillow
@@ -12,4 +13,4 @@ yt_dlp
 lapx>=0.5.2
 timm==0.8.13.dev0
 ultralytics==8.0.124
-!apt-get install -y libgl1-mesa-dev
+#!apt-get install -y libgl1-mesa-dev
