@@ -1,0 +1,5 @@
+huggingface_hub
+yt_dlp
+lapx>=0.5.2
+timm==0.8.13.dev0
+ultralytics==8.0.124
