@@ -1,10 +1,10 @@
 streamlit
-opencv-python==4.8.1.78
 #opencv-python-headless
 pandas
 numpy
 pillow
 pyarrow 
+opencv-python==4.8.1.78
 torch==1.13.1                  
 torchvision==0.14.1 
 #python-csv
