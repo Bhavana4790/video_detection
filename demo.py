@@ -100,8 +100,8 @@ def do_demo(arguments):
 
         # fps = fps+200
         if dct.draw:
-            fourcc = cv2.VideoWriter_fourcc(*"MJPG")
-            out = cv2.VideoWriter(outfilename, fourcc, fps, res)
+            fourcc = cv2.VideoWriter_fourcc(*'XVID')
+            out = cv2.VideoWriter(outfilename, fourcc, fps, res,isColor=True)
             _logger.info(f"Saving result to {outfilename}..")
 
         j = 0
@@ -131,7 +131,7 @@ def do_demo(arguments):
         df = pd.DataFrame(df_list)
 
         # Write DataFrame to CSV file
-        df.to_csv('output.csv', index=False)
+        df.to_csv(os.path.join(dct.output, 'output.csv'), index=False)
         
         if len(history) == 0:
             return 0, 0
