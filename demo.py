@@ -143,8 +143,8 @@ def main_func(input_path, frames):
     dct = {
         'input': input_path,
         'output': 'outputs/',
-        'detector_weights': 'face_model.pt',
-        'checkpoint': "gender_model.pth.tar",
+        'detector_weights': 'yolov8x_person_face_model.pt',
+        'checkpoint': "model_imbd_cross_person_gender_4.22_99.46.pth.tar",
         'with_persons': True,  # Set to True or False as needed
         'disable_faces': True,  # Set to True or False as needed
         'draw': True,  # Set to True or False as needed
