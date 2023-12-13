@@ -1,9 +1,9 @@
-apt-get install ffmpeg libsm6 libxext6  -y
-apt-get install -y libglib2.0-0
+#apt-get install ffmpeg libsm6 libxext6
+#apt-get install -y libglib2.0-0
 streamlit
 #opencv-python-headless
 pandas
-numpy==1.21.6
+numpy
 pillow
 pyarrow 
 torch==1.13.1                  
@@ -13,8 +13,10 @@ huggingface_hub
 yt_dlp
 lapx>=0.5.2
 timm==0.8.13.dev0
-ultralytics #==8.0.124
+ultralytics==8.0.124
 #!apt-get install -y libgl1-mesa-dev
 #!apt-get install -y libglib2.0-0
 #opencv-python==4.8.1.78
 opencv-python-headless
+common_pyutil
+omegaconf 
